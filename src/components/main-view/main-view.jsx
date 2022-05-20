@@ -1,75 +1,124 @@
 import React from 'react'; // imports react into file
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import './main-view.scss';
+
+import { RegistrationView } from '../registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 export class MainView extends React.Component {
+  constructor() {
+    super();
+    // Initial state is set to null
+    this.state = {
+      movies: [],
+      selectedMovie: null,
+      registered: null,
+      user: null,
+    };
+  }
 
-    constructor() {
-      super();
-  // Initial state is set to null
-  this.state = {
-    movies: [
-      { _id: 1, Title: 'Inception', Description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious of his targets.', ImageURL: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg'},
-      { _id: 2, Title: 'The Shawshank Redemption', Description: 'Shawshank Redemption tells the story of banker Andy Dufresne (Tim Robbins), who is sentenced to life in Shawshank State Penitentiary for the murders of his wife and her lover, despite his claims of innocence.', ImageURL: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg'},
-      { _id: 3, Title: 'Gladiator', Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.', ImageURL: 'https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png'},
-    ],
-    selectedMovie: null
-  };
-}
-
-
-      
-    setSelectedMovie(movie) {
+  componentDidMount() {
+    axios
+      .get('https://desolate-basin-26751.herokuapp.com/movies')
+      .then((response) => {
         this.setState({
-            selectedMovie: movie
+          movies: response.data,
         });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  // this method is activated when a clicks on movie-view It updates the state of the `selectedMovie` *property to that movie*/
+  setSelectedMovie(newSelectedMovie) {
+    this.setState({
+      selectedMovie: newSelectedMovie,
+    });
+  }
+
+  // registration for new users.
+  onRegister(registered) {
+    this.setState({
+      registered,
+    });
+  }
+
+  // user log in. This method will update the user state of the MainView component and will be called when the user has successfully logged in
+  onLoggedIn(user) {
+    this.setState({
+      user,
+    });
+  }
+
+  /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+
+  render() {
+    const { movies, selectedMovie, user, registered } = this.state;
+
+    if (!registered) {
+      return (
+        <RegistrationView
+          onRegister={(registered) => this.onRegistration(registered)}
+        />
+      );
     }
 
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    
-
-
-    render() {
-        const { movies, selectedMovie, user } = this.state;
-
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user) {
+      return (
+        <LoginView
+          onLoggedIn={(user) => this.onLoggedIn(user)}
+          onRegister={(bool) => this.onRegister(bool)}
+        />
+      );
+    }
 
-    // Before the movies have been loaded
+    // Before loading a movie
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-        <div className="main-view">
-        {/*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/}
-        {selectedMovie
-            ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
-            : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/>
-            ))
-        }
-        </div>
-    );
-    }
-
- 
-render() {
-    const { movies, selectedMovie } = this.state;
-
-
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
-
-    return (
       <div className="main-view">
-        {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
-          : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }}/>
+        {selectedMovie ? (
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={(newSelectedMovie) => {
+              this.setSelectedMovie(newSelectedMovie);
+            }}
+          />
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                this.setSelectedMovie(newSelectedMovie);
+              }}
+            />
           ))
-        }
+        )}
       </div>
     );
   }
-
 }
 
 export default MainView;
+
+MainView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImageURL: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string,
+    }),
+    Director: PropTypes.shape({
+      Name: PropTypes.string,
+    }),
+  }).isRequired,
+
+  onMovieClick: PropTypes.func.isRequired,
+};
