@@ -1,0 +1,38 @@
+@use '../../index.scss' as m;
+
+body {
+    box-sizing: border-box;
+    font-family: m.$main-font;
+}
+
+#navbar {
+    background-color: m.$navbar-color;
+    margin-bottom: 10px;
+    border: 5px;
+    border-color: m.$color;
+}
+
+#navbar-container {
+    background-color: m.$color;
+    margin: auto;
+}
+
+#navbar-brand {
+    background-color: m.$navbar-color;
+    color: m.$color;
+    font-size: 30px;
+    font-weight: 900;
+    margin-left: 20px;
+}
+
+#nav {
+    background-color: m.$navbar-color;
+}
+
+#nav-link {
+    background-color: m.$navbar-color;
+    color: m.$color;
+    font-size: 20px;
+    font-weight: 600;
+
+}

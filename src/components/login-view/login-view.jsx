@@ -1,41 +1,113 @@
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import {
+  Form,
+  Button,
+  Card,
+  CardGroup,
+  Container,
+  Col,
+  Row,
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './login-view.scss';
+import axios from 'axios';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr('Username required');
+      isReq = false;
+    } else if (username.length < 2) {
+      setUsernameErr('Username must be at least 2 characters long');
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordErr('Password required');
+      isReq = false;
+    } else if (password.length < 10) {
+      setPasswordErr('Password must be at least 10 characters long');
+      isReq = false;
+    }
+    return isReq;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    const isReq = validate();
+    if (isReq) {
+      axios
+        .post('https://desolate-basin-26751.herokuapp.com/users', {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          console.log('Sorry, there is no such user');
+        });
+    }
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit" onClick={handleSubmit}>
-        Submit
-      </button>
-    </form>
+    <Container id="login-form">
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card id="login-card">
+              <Card.Body>
+                <Card.Title id="login-card-title">Please login</Card.Title>
+                <Form>
+                  <Form.Group controlId="formUsername">
+                    <Form.Label id="login-form-label">Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="Enter your username"
+                    />
+                    {usernameErr && <p>{usernameErr}</p>}
+                  </Form.Group>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label id="login-form-label">Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Enter your password"
+                    />
+                    {passwordErr && <p>{passwordErr}</p>}
+                  </Form.Group>
+                  <Button
+                    id="login-button"
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    Login
+                  </Button>
+                </Form>
+                <Card.Text>Not registered yet?</Card.Text>
+                <div id="register-container">
+                  <Link to="/register">
+                    <Button id="link-to-register-button">Register now</Button>
+                  </Link>
+                </div>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

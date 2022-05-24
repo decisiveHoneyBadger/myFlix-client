@@ -1,5 +1,26 @@
-$color: steelblue;
+$color: #FFFFFF;
+$background-color:#000000;
+$main-font: 'Outfit', sans-serif;
+$button-color: #B22222;
+$navbar-color: #FF6347;
+$font-size-card-title: 20px;
+$font-weight-card-title: 600;
+$font-size-card-button: 15px;
+$font-weight-card-button: 400;
+$font-size-login-card-title: 30px;
+$font-weight-login-card-title: 600;
+$font-size-form-description: 20px;
+$font-weight-form-description: 400;
+$font-size-movie-title: 30px;
+$font-weight-movie-title: 600;
+$font-size-movie-description: 20px;
+$font-weight-movie-description: 400;
+
 
 .my-flix {
   color: $color;
+}
+
+body {
+  font-family: $main-font;
 }

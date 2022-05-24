@@ -1,0 +1,46 @@
+@use '../../index.scss' as m;
+
+body {
+    box-sizing: border-box;
+    font-family: m.$main-font;
+}
+
+#movie-view {
+    border-color: m.$navbar-color;
+    border-width: 10px;
+    min-height: 500px;
+}
+
+#movie-view-image {
+    margin-bottom: 20px;
+}
+
+#movie-title {
+    text-align: center;
+    font-size: m.$font-size-movie-title;
+    font-weight: m.$font-weight-movie-title;
+}
+
+#movie-description {
+    font-size: m.$font-size-movie-description;
+    font-weight: m.$font-weight-movie-description;
+}
+
+#movie-director {
+    font-size: m.$font-size-movie-description;
+    font-weight: m.$font-weight-movie-description;
+}
+
+#movie-genre {
+    font-size: m.$font-size-movie-description;
+    font-weight: m.$font-weight-movie-description;
+}
+
+#movie-view-button {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-right: 20px;
+    color: m.$color;
+    background-color: m.$background-color;
+    border: none;
+}

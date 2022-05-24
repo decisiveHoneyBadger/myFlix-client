@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import { CardGroup, Container, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
@@ -7,9 +10,21 @@ export class MovieCard extends React.Component {
     const { movie, onMovieClick } = this.props;
 
     return (
-      <div onClick={() => onMovieClick(movie)} className="movie-card">
-        {movie.Title}
-      </div>
+      <Container>
+        <CardGroup>
+          <Card id="movie-card">
+            <Card.Img variant="top" src={movie.ImagePath} />
+            <Card.Body>
+              <Card.Title id="card-title">{movie.Title}</Card.Title>
+              <Link to={`/movies/${movie._id}`}>
+                <Button id="card-button" variant="link">
+                  Show more
+                </Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </CardGroup>
+      </Container>
     );
   }
 }

@@ -1,0 +1,29 @@
+@use '../../index.scss' as m;
+
+body {
+    box-sizing: border-box;
+    font-family: m.$main-font;
+    font-size: 40px;
+    color: m.$color;
+    background-color: m.$background-color;
+}
+
+#card-button {
+    margin: auto;
+    color: m.$color;
+    font-size: m.$font-size-card-button;
+    font-weight: m.$font-weight-card-button;
+}
+
+#movie-card {
+    text-align: center;
+    min-height: 500px;
+    margin-bottom: 50px;
+    border-color: m.$color;
+    border-width: 10px;
+}
+
+#card-title {
+    font-size: m.$font-size-card-title;
+    font-weight: m.$font-weight-card-title;
+}
