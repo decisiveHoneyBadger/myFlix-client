@@ -4,21 +4,52 @@ import { Navbar, Container, Nav, Button, Form } from 'react-bootstrap';
 import './navbar-view.scss';
 
 export function NavbarView({ user }) {
+  const onLoggedOut = () => {
+    localStorage.clear();
+    window.open('/', '_self');
+  };
+  const isAuth = () => {
+    if (typeof window == 'undefined') {
+      return false;
+    }
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token');
+    } else {
+      return false;
+    }
+  };
+
   return (
-    <Container id="navbar-container">
-      <Navbar id="navbar" fixed="top">
-        <Navbar.Brand id="navbar-brand" href="/">
-          myFlix
+    <Navbar
+      className="main-nav"
+      sticky="top"
+      bg="dark"
+      expand="lg"
+      variant="dark"
+    >
+      <Container>
+        <Navbar.Brand classname="navbar-logo" href="/">
+          myFlixCinema
         </Navbar.Brand>
-        <Nav id="nav" className="me-auto">
-          <Nav.Link id="nav-link" href="/profile">
-            Profile
-          </Nav.Link>
-          <Nav.Link id="nav-link" href="#">
-            Watchlist
-          </Nav.Link>{' '}
-        </Nav>
-      </Navbar>
-    </Container>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ml-auto">
+            {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
+            {isAuth() && (
+              <Button
+                variant="link"
+                onClick={() => {
+                  this.onLoggedOut();
+                }}
+              >
+                Logout
+              </Button>
+            )}
+            {!isAuth() && <Nav.Link href="/">Sign-in</Nav.Link>}
+            {isAuth() && <Nav.Link href="/register">Sign-up</Nav.Link>}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

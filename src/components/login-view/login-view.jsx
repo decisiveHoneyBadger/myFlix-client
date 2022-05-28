@@ -42,7 +42,8 @@ export function LoginView(props) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // (e = event) prevents the default behavior of submitting a form
+    /* Send a request to the server for authentication */
     const isReq = validate();
     if (isReq) {
       axios
@@ -52,7 +53,7 @@ export function LoginView(props) {
         })
         .then((response) => {
           const data = response.data;
-          props.onLoggedIn(data);
+          props.onLoggedIn(data); // (data = token, username) if the previous methos is successful, this method is calles
         })
         .catch((e) => {
           console.log('Sorry, there is no such user');
