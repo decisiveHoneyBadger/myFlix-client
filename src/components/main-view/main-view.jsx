@@ -1,6 +1,11 @@
 import React from 'react'; // imports react into file
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { NavbarView } from '../navbar-view/navbar-view';
@@ -67,10 +72,12 @@ export class MainView extends React.Component {
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   render() {
     const { movies, user } = this.state;
+
     return (
       <Router>
         <NavbarView user={user} />
         <Container>
+          bla bla
           <Row className="main-view justify-content-md-center">
             <Route
               exact
@@ -98,6 +105,8 @@ export class MainView extends React.Component {
                 );
               }}
             />
+            <Link to="/movies">Movies</Link>
+
             <Route
               path="/movies/:id"
               render={({ match, history }) => {
@@ -112,12 +121,29 @@ export class MainView extends React.Component {
               }}
             />
             <Route
-              path="/movie-director/:id"
+              path="/directors/:name"
               render={({ match, history }) => {
+                if (!user)
+                  return (
+                    <Row>
+                      <Col>
+                        <LoginView
+                          onLoggedIn={(user) => this.onLoggedIn(user)}
+                        />
+                      </Col>
+                    </Row>
+                  );
+                if (movies.length === 0) return <div className="main-view" />;
+
                 return (
-                  <Col>
+                  <Col md={8}>
                     <DirectorView
-                      movie={movies.find((m) => m._id === match.params.id)}
+                      director={
+                        movies.find(
+                          (m) => m.Director.Name === match.params.name,
+                        ).Director
+                      }
+                      movies={movies}
                       onBackClick={() => history.goBack()}
                     />
                   </Col>
@@ -149,6 +175,35 @@ export class MainView extends React.Component {
                     onBackClick={() => history.goBack()}
                   />
                 </Col>;
+              }}
+            />
+            <Route
+              path="/genres/:name"
+              render={({ match, history }) => {
+                if (!user)
+                  return (
+                    <Row>
+                      <Col>
+                        <LoginView
+                          onLoggedIn={(user) => this.onLoggedIn(user)}
+                        />
+                      </Col>
+                    </Row>
+                  );
+                if (movies.length === 0) return <div className="main-view" />;
+
+                return (
+                  <Col md={8}>
+                    <GenreView
+                      genre={
+                        movies.find((m) => m.Genre.Name === match.params.name)
+                          .Genre
+                      }
+                      movies={movies}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
               }}
             />
           </Row>

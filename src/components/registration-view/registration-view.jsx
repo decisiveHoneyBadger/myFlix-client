@@ -11,6 +11,7 @@ import {
   Row,
 } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export function RegistrationView(props) {
   const [name, setName] = useState('');
@@ -27,7 +28,7 @@ export function RegistrationView(props) {
 
   const validate = () => {
     let isReq = true;
-    if (name) {
+    if (!name) {
       setValues({ ...values, nameErr: 'Name is required' });
       isReq = false;
     }
