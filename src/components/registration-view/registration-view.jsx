@@ -14,13 +14,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export function RegistrationView(props) {
-  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
   const [values, setValues] = useState({
-    nameErr: '',
     usernameErr: '',
     passwordErr: '',
     emailErr: '',
@@ -28,29 +26,25 @@ export function RegistrationView(props) {
 
   const validate = () => {
     let isReq = true;
-    if (!name) {
-      setValues({ ...values, nameErr: 'Name is required' });
-      isReq = false;
-    }
     if (!username) {
-      setValues({ values, usernameErr: 'Username must be 5 characters long' });
+      setValues({ values, usernameErr: 'Username must be 5 characters long!' });
       isReq = false;
     }
     if (!password) {
-      setValues({ ...values, passwordErr: 'Password Required' }),
+      setValues({ ...values, passwordErr: 'Password required!' }),
         (isReq = false);
     } else if (password.length < 6) {
       setValues({
         ...values,
-        passwordErr: 'Password must be 6 characters long',
+        passwordErr: 'Password must be 6 characters long!',
       });
       isReq = false;
     }
     if (!email) {
-      setValues({ ...values, emailErr: 'Email Required' });
+      setValues({ ...values, emailErr: 'Email Required!' });
       isReq = false;
     } else if (email.indexOf('@') === -1) {
-      setValues({ ...values, emailErr: 'Email is invalid' });
+      setValues({ ...values, emailErr: 'Email is invalid!' });
       isReq = false;
     }
 
@@ -65,8 +59,8 @@ export function RegistrationView(props) {
       axios
         .post('https://desolate-basin-26751.herokuapp.com/users', {
           Username: username,
-          Password: password,
           Email: email,
+          Password: password,
           Birthday: birthday,
         })
         .then((response) => {
@@ -87,7 +81,7 @@ export function RegistrationView(props) {
       <Row className="mt-5">
         <Col md={12}>
           <Form>
-            <h3>Sign Up</h3>
+            <h3>Register</h3>
             <p></p>
             <Form.Group controlId="formUsername" className="reg-form-inputs">
               <Form.Label>Username:</Form.Label>
@@ -99,14 +93,14 @@ export function RegistrationView(props) {
               {values.usernameErr && <p>{value.usernameErr}</p>}
             </Form.Group>
 
-            <Form.Group controlId="formName" classname="reg-form-inputs">
-              <Form.Label>Name:</Form.Label>
+            <Form.Group controlId="Email" className="reg-form-inputs">
+              <Form.Label>Email:</Form.Label>
               <Form.Control
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              {values.nameErr && <p>{values.nameErr}</p>}
+              {values.emailErr && <p>{values.emailErr}</p>}
             </Form.Group>
 
             <Form.Group controlId="fromPassword" className="reg-form-inputs">
@@ -119,15 +113,6 @@ export function RegistrationView(props) {
               {values.passwordErr && <p>{values.passwordErr}</p>}
             </Form.Group>
 
-            <Form.Group controlId="Email" className="reg-form-inputs">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {values.emailErr && <p>{values.emailErr}</p>}
-            </Form.Group>
             <Form.Group controlId="updateBirthday">
               <Form.Label>Birthday</Form.Label>
               <Form.Control

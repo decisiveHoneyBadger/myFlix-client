@@ -77,7 +77,6 @@ export class MainView extends React.Component {
       <Router>
         <NavbarView user={user} />
         <Container>
-          bla bla
           <Row className="main-view justify-content-md-center">
             <Route
               exact
@@ -86,14 +85,33 @@ export class MainView extends React.Component {
                 if (!user)
                   return (
                     <Col>
-                      <LoginView
-                        movies={movies}
-                        onLoggedIn={(user) => this.onLoggedIn(user)}
-                      />
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                     </Col>
                   );
+                if (movies.length === 0) {
+                  return;
+                  <div className="main-view" />;
+                }
+                return movies.map((m) => (
+                  <Col sm={6} md={4} lg={3} key={m._id}>
+                    <MovieCard movie={m} />
+                  </Col>
+                ));
               }}
             />
+
+            <Route
+              path="/login"
+              render={() => {
+                if (user) return <Redirect to="/" />;
+                return (
+                  <Col md={8}>
+                    <LoginView />
+                  </Col>
+                );
+              }}
+            />
+
             <Route
               path="/register"
               render={() => {
@@ -120,6 +138,7 @@ export class MainView extends React.Component {
                 );
               }}
             />
+
             <Route
               path="/directors/:name"
               render={({ match, history }) => {
@@ -134,7 +153,6 @@ export class MainView extends React.Component {
                     </Row>
                   );
                 if (movies.length === 0) return <div className="main-view" />;
-
                 return (
                   <Col md={8}>
                     <DirectorView
@@ -150,6 +168,7 @@ export class MainView extends React.Component {
                 );
               }}
             />
+
             <Route
               path={`/users/${user}`}
               render={({ match, history }) => {
@@ -164,6 +183,7 @@ export class MainView extends React.Component {
                 </Col>;
               }}
             />
+
             <Route
               path={`/update-user/${user}`}
               render={({ match, history }) => {
@@ -177,6 +197,7 @@ export class MainView extends React.Component {
                 </Col>;
               }}
             />
+
             <Route
               path="/genres/:name"
               render={({ match, history }) => {
@@ -191,7 +212,6 @@ export class MainView extends React.Component {
                     </Row>
                   );
                 if (movies.length === 0) return <div className="main-view" />;
-
                 return (
                   <Col md={8}>
                     <GenreView

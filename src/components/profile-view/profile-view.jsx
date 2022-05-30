@@ -18,6 +18,7 @@ import {
 } from 'react-bootstrap';
 import Link from 'react-router-dom';
 import UpdateUser from './update-user';
+
 export class ProfileView extends React.Component {
   constructor() {
     super();

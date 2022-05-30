@@ -19,11 +19,8 @@ export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [email, setEmail] = useState('');
-
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
-  const [emailErr, setEmailErr] = useState('');
 
   const validate = () => {
     let isReq = true;
@@ -38,10 +35,7 @@ export function LoginView(props) {
       setPasswordErr('Password required');
       isReq = false;
     }
-    if (!email) {
-      setEmailErr('Email required');
-      isReq = false;
-    }
+
     // else if (password.length < 10) {
     //   setPasswordErr('Password must be at least 10 characters long');
     //   isReq = false;
@@ -58,16 +52,18 @@ export function LoginView(props) {
         .post('https://desolate-basin-26751.herokuapp.com/login', {
           Username: username,
           Password: password,
-          Email: email,
         })
         .then((response) => {
           const data = response.data;
           props.onLoggedIn(data); // (data = token, username) if the previous methos is successful, this method is calles
         })
-        .catch((e) => {
-          console.log('Sorry, there is no such user');
-          console.log(e.response);
+        .catch((response) => {
+          console.log(response);
         });
+      // .catch((e) => {
+      //   console.log('Sorry, there is no such user');
+      //   console.log(e.response);
+      // });
     }
   };
 
@@ -88,15 +84,6 @@ export function LoginView(props) {
                       placeholder="Enter your username"
                     />
                     {usernameErr && <p>{usernameErr}</p>}
-                  </Form.Group>
-                  <Form.Group controlId="formEmail">
-                    <Form.Label id="login-form-label">Email</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                    />
-                    {emailErr && <p>{emailErr}</p>}
                   </Form.Group>
                   <Form.Group controlId="formPassword">
                     <Form.Label id="login-form-label">Password</Form.Label>
@@ -135,7 +122,6 @@ LoginView.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
   }),
-  onLoggedIn: PropTypes.func.isRequired,
+  // onLoggedIn: PropTypes.func.isRequired,
 };

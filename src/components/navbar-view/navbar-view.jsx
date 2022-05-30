@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { Fragment } from 'react';
 import { Navbar, Container, Nav, Button, Form } from 'react-bootstrap';
 import './navbar-view.scss';
 
@@ -34,19 +33,19 @@ export function NavbarView({ user }) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
-            {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
             {isAuth() && (
-              <Button
-                variant="link"
-                onClick={() => {
-                  this.onLoggedOut();
-                }}
-              >
-                Logout
-              </Button>
+              <Fragment>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+              </Fragment>
             )}
-            {!isAuth() && <Nav.Link href="/">Sign-in</Nav.Link>}
-            {isAuth() && <Nav.Link href="/register">Sign-up</Nav.Link>}
+            {!isAuth() && (
+              <Fragment>
+                <Nav.Link href={'/login'}>Login</Nav.Link>
+                <Nav.Link href={'/register'}>Register</Nav.Link>
+              </Fragment>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
