@@ -57,13 +57,10 @@ export function LoginView(props) {
           const data = response.data;
           props.onLoggedIn(data); // (data = token, username) if the previous methos is successful, this method is calles
         })
-        .catch((response) => {
-          console.log(response);
+
+        .catch((e) => {
+          console.log('Sorry, there is no such user');
         });
-      // .catch((e) => {
-      //   console.log('Sorry, there is no such user');
-      //   console.log(e.response);
-      // });
     }
   };
 

@@ -89,8 +89,7 @@ export class MainView extends React.Component {
                     </Col>
                   );
                 if (movies.length === 0) {
-                  return;
-                  <div className="main-view" />;
+                  return <div className="main-view" />;
                 }
                 return movies.map((m) => (
                   <Col sm={6} md={4} lg={3} key={m._id}>
@@ -123,7 +122,6 @@ export class MainView extends React.Component {
                 );
               }}
             />
-            <Link to="/movies">Movies</Link>
 
             <Route
               path="/movies/:id"
@@ -173,14 +171,15 @@ export class MainView extends React.Component {
               path={`/users/${user}`}
               render={({ match, history }) => {
                 if (!user) return <Redirect to="/" />;
-                return;
-                <Col>
-                  <ProfileView
-                    movies={movies}
-                    user={user}
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>;
+                return (
+                  <Col>
+                    <ProfileView
+                      movies={movies}
+                      user={user}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
               }}
             />
 
@@ -188,13 +187,14 @@ export class MainView extends React.Component {
               path={`/update-user/${user}`}
               render={({ match, history }) => {
                 if (!user) return <Redirect to="/" />;
-                return;
-                <Col>
-                  <UpdateUser
-                    user={user}
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>;
+                return (
+                  <Col>
+                    <UpdateUser
+                      user={user}
+                      onBackClick={() => history.goBack()}
+                    />
+                  </Col>
+                );
               }}
             />
 

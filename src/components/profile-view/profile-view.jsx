@@ -24,8 +24,8 @@ export class ProfileView extends React.Component {
     super();
     this.state = {
       username: null,
-      password: null,
       email: null,
+      password: null,
       birthday: null,
       favoriteMovies: [],
     };
