@@ -4,6 +4,7 @@
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("dd46567214b40b5b");
 }
 
 body {
@@ -28,6 +29,7 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("8aa25f8ac51e98a8");
 }
 
 body {
@@ -80,41 +82,7 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
-}
-
-body {
-  box-sizing: border-box;
-  font-family: "Outfit", sans-serif;
-  font-size: 40px;
-  color: #FFFFFF;
-  background-color: #000000;
-}
-
-#card-button {
-  margin: auto;
-  color: black;
-  font-size: 15px;
-  font-weight: 400;
-}
-
-#movie-card {
-  text-align: center;
-  min-height: 500px;
-  margin-bottom: 50px;
-  border-color: #FFFFFF;
-  border-width: 10px;
-}
-
-#card-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-.my-flix {
-  color: #FFFFFF;
-}
-
-body {
-  font-family: "Outfit", sans-serif;
+  background-image: url("70f0525760f3e11b");
 }
 
 body {
@@ -167,6 +135,7 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("eb86a23c668570ae");
 }
 
 body {
@@ -194,6 +163,7 @@ body {
     color: #FFFFFF;
   }
 }
+
 #registration-card {
   border-color: #FFFFFF;
   border-width: 10px;
@@ -218,11 +188,49 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("caf33d3a48364f1d");
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  font-size: 40px;
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+#card-button {
+  margin: auto;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#movie-card {
+  text-align: center;
+  min-height: 500px;
+  margin-bottom: 50px;
+  border-color: #FFFFFF;
+  border-width: 10px;
+}
+
+#card-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.my-flix {
+  color: #FFFFFF;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-image: url("60750b89e00ea641");
 }
 
 .fav-movie {
   margin-bottom: 15px;
 }
+
 .fav-movie figure {
   position: relative;
   overflow: hidden;
@@ -231,14 +239,17 @@ body {
   margin: auto;
   width: 100%;
 }
+
 .fav-movie figure img {
   display: block;
   height: 400px;
   margin: auto;
 }
+
 .fav-movie figure figcaption {
   text-align: center;
 }
+
 .fav-movie button.btn {
   display: block;
   margin: auto;
@@ -253,6 +264,7 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("42985921349fe2ea");
 }
 .my-flix {
   color: #FFFFFF;
@@ -260,6 +272,7 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("7dc5255554afdd1d");
 }
 
 body {
@@ -303,5 +316,6 @@ body {
 
 body {
   font-family: "Outfit", sans-serif;
+  background-image: url("https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg");
 }
 /*# sourceMappingURL=index.17d663fa.css.map */

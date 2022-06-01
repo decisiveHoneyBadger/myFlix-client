@@ -1,16 +1,11 @@
 import React from 'react'; // imports react into file
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { NavbarView } from '../navbar-view/navbar-view';
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-Card/movie-card';
+import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -237,7 +232,7 @@ MainView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImageURL: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string,
     }),

@@ -13,7 +13,11 @@ export class MovieCard extends React.Component {
       <Container>
         <CardGroup>
           <Card id="movie-card">
-            <Card.Img variant="top" src={movie.ImagePath} />
+            <Card.Img
+              variant="top"
+              src={movie.ImagePath}
+              crossOrigin="anonymous"
+            />
             <Card.Body>
               <Card.Title id="card-title">{movie.Title}</Card.Title>
               <Card.Text>{movie.Description}</Card.Text>
@@ -34,7 +38,7 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    ImageURL: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string,
     }),

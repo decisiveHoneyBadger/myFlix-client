@@ -17,6 +17,7 @@ export class MovieView extends React.Component {
                 <Card.Img
                   id="movie-view-image"
                   variant="top"
+                  crossOrigin="anonymous"
                   src={movie.ImagePath}
                 />
                 <Card.Title id="movie-title" className="movie-title">
@@ -75,6 +76,6 @@ MovieView.propTypes = {
       Name: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
     }),
-    ImageURL: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
   }).isRequired,
 };

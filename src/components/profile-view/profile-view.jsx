@@ -16,7 +16,7 @@ import {
   FormGroup,
   FormControl,
 } from 'react-bootstrap';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import UpdateUser from './update-user';
 
 export class ProfileView extends React.Component {
@@ -42,15 +42,16 @@ export class ProfileView extends React.Component {
       .then((response) => {
         //assign the result to the state
         this.setState({
-          username: response.data.username,
-          password: response.data.password,
-          email: response.data.email,
-          birthday: response.data.birthday,
-          favoriteMovies: response.data.favoriteMovies,
+          username: response.data.Username,
+          password: response.data.Password,
+          email: response.data.Email,
+          birthday: response.data.Birthday,
+          favoriteMovies: response.data.FavoriteMovies,
         });
       })
       .catch((e) => console.log(e));
   }
+
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
     this.getUser(accessToken);
@@ -156,6 +157,7 @@ export class ProfileView extends React.Component {
   render() {
     const { movies } = this.props;
     const { favoriteMovies, username } = this.state;
+    console.log('Hey this is State', this.state);
     if (!username) {
       return null;
     }
@@ -179,7 +181,7 @@ export class ProfileView extends React.Component {
                   }
                 >
                   <Container>
-                    <UserDetailsView />
+                    {/* <UserDetailsView /> */}
                     <Container className="flex-item pt-5">
                       <div className="p-0 d-flex-column">
                         <FormControl
