@@ -1,31 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import {
-  Row,
-  Col,
-  Spinner,
-  ListGroup,
-  Container,
-  Button,
-} from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
+import React from 'react';
+
+import { Row, ListGroup, Button } from 'react-bootstrap';
 
 export function DirectorView(props) {
   const { onBackClick } = props;
-
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-
-  console.log(props);
-
-  if (error) {
-    return (
-      <Row className="justify-content-center mx-5">
-        <p>There was an error loading your data!</p>
-      </Row>
-    );
-  }
 
   return (
     <>
