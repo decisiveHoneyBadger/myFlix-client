@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './profile-view.scss';
 import axios from 'axios';
-import UserInfo from './user-info';
-import FavoriteMovies from './favorite-movies';
+
 import PropTypes from 'prop-types';
 
 import {
@@ -17,7 +16,6 @@ import {
   FormControl,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import UpdateUser from './update-user';
 
 export class ProfileView extends React.Component {
   constructor() {
@@ -29,7 +27,7 @@ export class ProfileView extends React.Component {
       birthday: null,
       favoriteMovies: [],
     };
-    this.removeFav = this.removeFav.bind(this);
+
     this.setUsername = this.setUsername.bind(this);
   }
 
@@ -134,30 +132,26 @@ export class ProfileView extends React.Component {
       birthday: value,
     });
   }
-  removeFav() {
-    const user = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    const id = this.state.favoriteMovies;
-
+  removeFav(movieId) {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token');
     axios
       .delete(
-        `https://desolate-basin-26751.herokuapp.com/users/${user}/favoriteMovies/${id}`,
-
-        { headers: { Authorization: `Bearer ${token}` } },
-        {},
+        `https://desolate-basin-26751.herokuapp.com/users/${user}/movies/${movieId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
       )
-      .then((response) => {
-        console.log(response);
-        alert('Movie deleted from favorites!');
-        window.open(`/movies/${id}`, '_self');
+      .then(() => {
+        alert(`The movie was successfully deleted.`);
+        window.open(`/users/${user}`, '_self');
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.error(error));
   }
 
   render() {
     const { movies } = this.props;
     const { favoriteMovies, username } = this.state;
-    console.log('Hey this is State', this.state);
     if (!username) {
       return null;
     }
@@ -297,7 +291,7 @@ export class ProfileView extends React.Component {
                           </Card.Title>
                           <Button
                             className="custom-btn"
-                            onClick={this.removeFav}
+                            onClick={() => this.removeFav(movie._id)}
                           >
                             Remove from List
                           </Button>
