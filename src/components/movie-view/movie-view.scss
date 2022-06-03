@@ -29,11 +29,15 @@ body {
 #movie-director {
     font-size: m.$font-size-movie-description;
     font-weight: m.$font-weight-movie-description;
+    background-color: tomato;
+    color: white;
 }
 
 #movie-genre {
     font-size: m.$font-size-movie-description;
     font-weight: m.$font-weight-movie-description;
+    background-color: tomato;
+    color: white;
 }
 
 #movie-view-button {
@@ -43,4 +47,10 @@ body {
     color: m.$color;
     background-color: m.$background-color;
     border: none;
+    text-align: center;
 }
+
+#movie-view-button {
+    background-color: blue;
+}
+
