@@ -2,8 +2,8 @@ import React from 'react';
 
 import './profile-view.scss';
 import axios from 'axios';
-
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { removeFav } from '../../actions/actions';
 
 import {
   Container,
@@ -308,11 +308,10 @@ export class ProfileView extends React.Component {
   }
 }
 
-ProfileView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      Title: PropTypes.string.isRequired,
-      ImagePath: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
 };
+
+export default connect(mapStateToProps, { removeFav })(ProfileView);

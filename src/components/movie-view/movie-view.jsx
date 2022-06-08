@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import './movie-view.scss';
 import { Card, Col, Container, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addFav } from '../../actions/actions';
 
 export function MovieView(props) {
   const { movie, onBackClick } = props;
-  const addToFavoriteList = (movieId) => {
+  const addFav = (movieId) => {
     const currentUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     axios
@@ -66,10 +67,7 @@ export function MovieView(props) {
           >
             Back
           </Button>
-          <Button
-            id="movie-view-button"
-            onClick={() => addToFavoriteList(movie._id)}
-          >
+          <Button id="movie-view-button" onClick={() => addFav(movie._id)}>
             Add to favorites
           </Button>
         </Col>
@@ -78,18 +76,10 @@ export function MovieView(props) {
   );
 }
 
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-    }),
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string.isRequired,
-    }),
-    ImagePath: PropTypes.string.isRequired,
-  }).isRequired,
+const mapStateToProps = (state) => {
+  return {
+    movie: state.movie,
+  };
 };
+
+export default connect(mapStateToProps, { addFav })(MovieView);
