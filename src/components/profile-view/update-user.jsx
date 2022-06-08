@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 function UpdateUser({ handleSubmit, handleUpdate }) {
   return (
@@ -47,4 +48,10 @@ function UpdateUser({ handleSubmit, handleUpdate }) {
   );
 }
 
-export default UpdateUser;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { UpdateUser })(UpdateUser);
