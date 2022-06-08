@@ -26,7 +26,7 @@ export function addFav(value) {
   };
 }
 
-export function RemoveFav(value) {
+export function removeFav(value) {
   return {
     type: REMOVE_FAV,
     value,
