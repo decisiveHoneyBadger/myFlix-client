@@ -13,7 +13,7 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
-import { UpdateUser } from '../profile-view/update-user';
+import UpdateUser from '../profile-view/update-user';
 
 import './main-view.scss';
 
