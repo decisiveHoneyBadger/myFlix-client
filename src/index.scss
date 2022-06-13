@@ -1,5 +1,4 @@
-$color: #FFFFFF;
-$background-color:#000000;
+$color: #000000;
 $main-font: 'Outfit', sans-serif;
 $button-color: #B22222;
 $navbar-color: #FF6347;
@@ -24,4 +23,5 @@ $font-weight-movie-description: 400;
 body {
   font-family: $main-font;
   background-image: url('https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg');
+  background-color: $color;
 }
