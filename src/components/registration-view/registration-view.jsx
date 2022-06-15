@@ -89,45 +89,48 @@ export function RegistrationView(props) {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
               />
               {values.usernameErr && <p>{value.usernameErr}</p>}
             </Form.Group>
-
+            <br />
             <Form.Group controlId="Email" className="reg-form-inputs">
               <Form.Label>Email:</Form.Label>
               <Form.Control
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
               />
               {values.emailErr && <p>{values.emailErr}</p>}
             </Form.Group>
-
+            <br />
             <Form.Group controlId="fromPassword" className="reg-form-inputs">
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
               />
               {values.passwordErr && <p>{values.passwordErr}</p>}
             </Form.Group>
-
+            <br />
             <Form.Group controlId="updateBirthday">
-              <Form.Label>Birthday</Form.Label>
+              <Form.Label>Birthday:</Form.Label>
               <Form.Control
                 type="date"
                 name="birthday"
                 onChange={(e) => setBirthday(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
+            <br />
             <Button variant="primary" type="submit" onClick={handleSubmit}>
               Submit
             </Button>
-            <p></p>
-            <p>
-              Already registered <Link to={'/'}>sign in</Link>here
+            <br /> <br />
+            <p class="register-form-text">
+              Already registered? <Link to={'/'}>Login</Link> here
             </p>
           </Form>
         </Col>

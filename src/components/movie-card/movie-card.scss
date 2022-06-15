@@ -4,13 +4,12 @@ body {
     box-sizing: border-box;
     font-family: m.$main-font;
     font-size: 40px;
-    color: m.$color;
-    background-color: m.$background-color;
+    color: black;
 }
 
 #card-button {
     margin: auto;
-    color: m.$color;
+    color: rgba(255, 255, 255, 1);
     font-size: m.$font-size-card-button;
     font-weight: m.$font-weight-card-button;
 }
@@ -19,11 +18,17 @@ body {
     text-align: center;
     min-height: 500px;
     margin-bottom: 50px;
-    border-color: m.$color;
+    border-color: tomato;
     border-width: 10px;
 }
 
 #card-title {
     font-size: m.$font-size-card-title;
     font-weight: m.$font-weight-card-title;
+    font-size: 25px;
+    border-bottom: 3px solid tomato;
+}
+
+p.card-text {
+    color: black;
 }

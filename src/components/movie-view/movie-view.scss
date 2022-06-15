@@ -30,27 +30,29 @@ body {
     font-size: m.$font-size-movie-description;
     font-weight: m.$font-weight-movie-description;
     background-color: tomato;
-    color: white;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 25px;
 }
 
 #movie-genre {
     font-size: m.$font-size-movie-description;
     font-weight: m.$font-weight-movie-description;
     background-color: tomato;
-    color: white;
+    color: rgba(255, 255, 255, 1);
 }
 
 #movie-view-button {
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 25px;
     margin-right: 20px;
-    color: m.$color;
-    background-color: m.$background-color;
     border: none;
     text-align: center;
 }
 
 #movie-view-button {
     background-color: blue;
+    margin-bottom: inherit;
+    margin-left: auto;
+    margin-right: auto;
 }
 

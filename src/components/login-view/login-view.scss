@@ -14,7 +14,7 @@ body {
     font-weight: m.$font-weight-form-description;
     margin-top: 20px;
     margin-bottom: auto;
-    color: m.$color;
+    color: rgba(255, 255, 255, 1);
     font-weight: bold;
 }
 
@@ -22,16 +22,21 @@ body {
     font-size: m.$font-size-login-card-title;
     font-weight: m.$font-weight-login-card-title;
     text-align: center;
-    color: m.$color;
+    color: rgba(255, 255, 255, 1);
 }
 
 #login-card {
-    border-color: tomato;
+    border-color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
-    background-color: transparent;
+    background-color: #393A43;
     border-width: 10px;
     padding: 15px;
     border-radius: 2.25rem;
+}
+
+#login-card > .card-body {
+    background-color: #393A43;
+    border: none;
 }
 
 #login-button {

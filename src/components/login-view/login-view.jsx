@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import {
   Form,
   Button,
@@ -55,11 +53,12 @@ export function LoginView(props) {
         })
         .then((response) => {
           const data = response.data;
+
           props.onLoggedIn(data); // (data = token, username) if the previous methos is successful, this method is calles
         })
 
         .catch((e) => {
-          console.log('Sorry, there is no such user');
+          console.log('Sorry, there is no such user', e);
         });
     }
   };
@@ -74,7 +73,7 @@ export function LoginView(props) {
                 <Card.Title id="login-card-title">Please login</Card.Title>
                 <Form>
                   <Form.Group controlId="formUsername">
-                    <Form.Label id="login-form-label">Username</Form.Label>
+                    <Form.Label id="login-form-label">Username:</Form.Label>
                     <Form.Control
                       type="text"
                       onChange={(e) => setUsername(e.target.value)}
@@ -83,7 +82,7 @@ export function LoginView(props) {
                     {usernameErr && <p>{usernameErr}</p>}
                   </Form.Group>
                   <Form.Group controlId="formPassword">
-                    <Form.Label id="login-form-label">Password</Form.Label>
+                    <Form.Label id="login-form-label">Password:</Form.Label>
                     <Form.Control
                       type="password"
                       onChange={(e) => setPassword(e.target.value)}
@@ -100,10 +99,9 @@ export function LoginView(props) {
                     Login
                   </Button>
                 </Form>
-                <Card.Text>Not registered yet?</Card.Text>
                 <div id="register-container">
                   <Link to="/register">
-                    <Button id="link-to-register-button">Register now</Button>
+                    <Button id="register-now-button">Register now</Button>
                   </Link>
                 </div>
               </Card.Body>
