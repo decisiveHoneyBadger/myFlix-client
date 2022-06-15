@@ -13,7 +13,9 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
-import UpdateUser from '../profile-view/update-user';
+import { UpdateUser } from '../profile-view/update-user';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './main-view.scss';
 
@@ -37,6 +39,7 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
+    toast('Successully logged in!');
     console.log(authData);
 
     this.setState({
@@ -69,6 +72,17 @@ export class MainView extends React.Component {
     return (
       <Router>
         <NavbarView user={user} />
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Container>
           <Row className="main-view justify-content-md-center">
             <Route
