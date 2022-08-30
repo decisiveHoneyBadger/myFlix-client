@@ -1,13 +1,15 @@
-# myFlix
+# myFlix-client
 
-## Objective
+## Images
 
-To build the server-side component of a “movies” web application. The web
-application will provide users with access to information about different
-movies, directors, and genres. Users will be able to sign up, update their
-personal information, and create a list of their favorite movies.
+<p align="center">
+  <img height="200" src="/src/my-flix-client.png">
+  <img height="200" src="src/my-flix-client-2.png">
+</p>
 
-## Design Criteria
+## Description
+
+myFlix Client is the frontend-side of a movies web application. The application provides users with access to information about different movies, their directors and the movie genre. Users are able to sign up, update their personal information, create a list of their favorite movies and remove movies from their favorite list.
 
 ## User Stories
 
@@ -15,30 +17,104 @@ personal information, and create a list of their favorite movies.
   can learn more about movies I’ve watched or am interested in.
 - As a user, I want to be able to create a profile so I can save data about my favorite movies.
 
-## Feature Requirements
+## :key: Features
 
-The feature requirements below were extracted from the user stories listed above. Your project will
-only be approved if the following “essential” feature requirements are implemented in your
-Achievement project.
+### Main View
 
-### Essential Features
+- Returns a list of ALL movies to the user (each listed item with an image, title and description)
 
-- Returns a list of ALL movies to the user
-- Returns data (description, genre, director, image URL, whether it’s featured or not) about a
-  single movie by title to the user
-- Returns data about a genre (description) by name/title (e.g., “Thriller”)
-- Returns data about a director (bio, birth year, death year) by name
-- Allows new users to register
-- Allows users to update their user info (username, password, email, date of birth)
+- Sorting and filtering
+
+- Ability to select a movie for more details
+
+### Single movie view
+
+- Returns data (description, genre, director, image) about a single movie to the user
+
 - Allows users to add a movie to their list of favorites
-- Allows users to remove a movie from their list of favorites
+
+### Login view
+
+- Allows users to log in with a username and password
+
+- Registration view
+
+- Allows new users to register (username, password, email, birthday)
+
+### Genre view
+
+- Returns data about a genre, with a name and description
+
+### Director view
+
+- Returns data about a director (name, bio)
+
+### Profile view
+
+- Allows users to update their user info (username, password, email, date of birth)
+
 - Allows existing users to deregister
-- Allows users to use a filter in movies list
 
-### Technical Requirements
+- Displays favorite movies
 
-- The APP must use a “package.json” file.
-- The JavaScript code must be error-free.
-- The APP must include user authentication and authorization code.
-- The APP must include data validation logic.
-- The APP must meet data security regulations.
+- Allows users to remove a movie from their list of favorites
+
+## Technologies
+
+### :hammer_and_wrench: Built With
+
+- HTML
+
+- SCSS
+
+- JavaScript
+
+- [React](https://reactjs.org/), [React-Redux](https://react-redux.js.org/)
+
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+
+- [Parcel](https://parceljs.org/)
+
+## :page_with_curl: Technical Requirements
+
+- The application is a single-page application (SPA)
+
+- The application uses state routing to navigate between views and share URLs
+
+- The application gives users the option to filter movies
+
+- The application gives users the option to sort movies
+
+- The application initially uses Parcel as its build tool
+
+- The application is written using the React library and in ES2015+
+
+- The application is written with React Redux (hence respecting the Flux pattern)
+
+- The application uses Bootstrap as a UI library for styling and responsiveness
+
+- The application contains a mix of class components and function components
+
+- The application is hosted online [Netlify.com]
+
+## :man_technologist: Get Started
+
+Download the repository on your machine
+
+```
+https://github.com/decisiveHoneyBadger/myFlix-client.git
+```
+
+Install dependencies
+
+```
+npm install
+```
+
+Build the app
+
+```
+parcel src/index.html
+```
+
+## :rocket: <a href="https://myflix-cinema.netlify.app">Live Demo</a>
