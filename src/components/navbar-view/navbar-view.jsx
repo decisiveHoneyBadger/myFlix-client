@@ -27,7 +27,7 @@ export function NavbarView({ user }) {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand classname="navbar-logo" href="/">
+        <Navbar.Brand className="navbar-logo" href="/">
           myFlixCinema
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
