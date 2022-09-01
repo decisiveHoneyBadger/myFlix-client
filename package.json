@@ -19,6 +19,7 @@
   "homepage": "https://github.com/decisiveHoneyBadger/myFlix-client#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "parcel": "^2.0.0-rc.0",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
